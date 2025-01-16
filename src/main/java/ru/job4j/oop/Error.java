@@ -18,6 +18,7 @@ public class Error {
         System.out.println("Error status: " + active);
         System.out.println("Error number " + status);
         System.out.println("Error message: " + message);
+        System.out.println();
     }
 
     public static void main(String[] args) {
