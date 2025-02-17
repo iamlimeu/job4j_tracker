@@ -17,4 +17,29 @@ class StartUITest {
         assertThat(created.getName()).isEqualTo(expected.getName());
     }
 
+    @Test
+    public void whenReplaceItem() {
+        Tracker tracker = new Tracker();
+        Item item = new Item("New item");
+        tracker.add(item);
+        String[] answers = {
+                String.valueOf(item.getId()), "edited item"
+        };
+        StartUI.replaceItem(new MockInput(answers), tracker);
+        Item edited = tracker.findById(item.getId());
+        assertThat(edited.getName()).isEqualTo("edited item");
+    }
+
+    @Test
+    public void whenDeleteItem() {
+        Tracker tracker = new Tracker();
+        Item item = new Item("new item");
+        tracker.add(item);
+        String[] answers = {
+                String.valueOf(item.getId())
+        };
+        StartUI.deleteItem(new MockInput(answers), tracker);
+        Item deleted = tracker.findById(item.getId());
+        assertThat(deleted).isNull();
+    }
 }
